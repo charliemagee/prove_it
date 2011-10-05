@@ -5,8 +5,129 @@
 <def tag="main-nav">
   <navigation class="main-nav" merge-attrs param="default">
     <nav-item href="#{base_url}/">Home</nav-item>
+    <nav-item with="&NflGame"><ht key="nfl_game.nav_item" count="100"><model-name-human count="100"/></ht></nav-item>
   </navigation>
 </def>
+
+
+
+
+<!-- ====== NflGame Pages ====== -->
+
+<def tag="index-page" for="NflGame">
+  <page merge title="#{ht 'nfl_game.index.title', :default=>[model.model_name.human(:count=>100)] }">
+    <body: class="index-page nfl-game" param/>
+
+    <content: param>
+      <header param="content-header">
+        <h2 param="heading">
+          <ht key="nfl_game.index.heading">
+            <model-name-human model="&model"/>
+          </ht>
+        </h2>
+
+        <p param="count" if>
+          <ht key="nfl_game.collection.count" count="&collection_count">
+            <count summary/>
+          </ht>
+        </p>
+      </header>
+
+      <section param="content-body">
+        <a action="new" to="&model" param="new-link">
+          <ht key="nfl_game.actions.new">New Nfl game</ht>
+        </a>
+
+        <page-nav param="top-page-nav"/>
+
+        <collection param/>
+
+        <page-nav param="bottom-page-nav"/>
+
+
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="new-page" for="NflGame">
+  <page merge title="#{ht 'nfl_game.new.title', :default=>[' New Nfl game'] }">
+    <body: class="new-page nfl-game" param/>
+
+    <content: param>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="nfl_game.new.heading">
+            New Nfl game
+          </ht>
+        </h2>
+      </section>
+
+      <section param="content-body">
+        <form param>
+          <submit: label="#{ht 'nfl_game.actions.create', :default=>['Create Nfl game']}"/>
+        </form>
+      </section>
+    </content:>
+  </page>
+</def>
+
+
+<def tag="show-page" for="NflGame">
+  <page merge title="#{ht 'nfl_game.show.title', :default=>['Nfl game'] }">
+
+    <body: class="show-page nfl-game" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="nfl_game.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="nfl_game.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Nfl game
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="away, home, winner, gameday" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>
+
+
+<def tag="edit-page" for="NflGame">
+  <page merge title="#{ht 'nfl_game.edit.title', :default=>['Edit Nfl game'] }">
+
+    <body: class="edit-page nfl-game" param/>
+
+    <content:>
+      <section param="content-header">
+        <h2 param="heading">
+          <ht key="nfl_game.edit.heading" name="&this.respond_to?(:name) ? this.name : ''">
+            Edit Nfl game
+          </ht>
+        </h2>
+        <delete-button label="#{ht 'nfl_game.actions.delete', :default=>['Remove This Nfl game']}" param/>
+      </section>
+
+      <section param="content-body">
+        <form param/>
+      </section>
+    </content:>
+
+  </page>
+</def>
+
 
 
 

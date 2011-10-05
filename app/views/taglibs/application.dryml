@@ -7,3 +7,38 @@
 <include src="taglibs/auto/rapid/forms"/>
 
 <set-theme name="clean"/>
+
+
+<def tag="show-page" for="NflGame">
+  <page merge title="#{ht 'nfl_game.show.title', :default=>['Nfl game'] }">
+
+    <body: class="show-page nfl-game" param/>
+
+    <content: param>
+          <header param="content-header">
+            <h2 param="heading">
+              <ht key="nfl_game.show.heading" name="&this.respond_to?(:name) ? this.name : ''">
+                <name/>
+              </ht>
+            </h2>
+
+			<a action="new" to="&model" param="new-link">
+	          <ht key="nfl_game.actions.new">New Nfl game</ht>
+	        </a>
+
+            <record-flags fields="" param/>
+
+            <a action="edit" if="&can_edit?" param="edit-link">
+              <ht key="nfl_game.actions.edit" name="&this.respond_to?(:name) ? this.name : ''">
+                Edit Nfl game
+              </ht>
+            </a>
+          </header>
+
+          <section param="content-body">
+            <field-list fields="away, home, winner, gameday" param/>
+          </section>
+    </content:>
+
+  </page>
+</def>

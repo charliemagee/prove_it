@@ -10,7 +10,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111005212528) do
+ActiveRecord::Schema.define(:version => 20111005224639) do
+
+  create_table "nfl_games", :force => true do |t|
+    t.string   "name"
+    t.string   "away"
+    t.string   "home"
+    t.string   "winner"
+    t.date     "gameday"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "crypted_password",          :limit => 40

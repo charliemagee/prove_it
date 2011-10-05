@@ -4,6 +4,20 @@
 en:
   hello: "Hello world"
 
+  nfl_game:
+    nav_item: "NFL Games"
+
+
+  activerecord:
+    models:
+      nfl_game:
+        one: NFL Game
+        other: NFL Games
+#        nfl_gameday:
+#          one: NFL Gameday
+#          other: NFL Gamedays
+  
+
 #  attributes:
 #    created_at: Created at
 #    updated_at: Updated at

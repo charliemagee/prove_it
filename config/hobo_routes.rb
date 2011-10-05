@@ -26,4 +26,14 @@ ProveIt::Application.routes.draw do
   get 'logout(.:format)' => 'users#logout', :as => 'user_logout'
   match 'forgot_password(.:format)' => 'users#forgot_password', :as => 'user_forgot_password'
 
+
+  # Resource routes for controller "nfl_games"
+  get 'nfl_games(.:format)' => 'nfl_games#index', :as => 'nfl_games'
+  get 'nfl_games/new(.:format)', :as => 'new_nfl_game'
+  get 'nfl_games/:id/edit(.:format)' => 'nfl_games#edit', :as => 'edit_nfl_game'
+  get 'nfl_games/:id(.:format)' => 'nfl_games#show', :as => 'nfl_game', :constraints => { :id => %r([^/.?]+) }
+  post 'nfl_games(.:format)' => 'nfl_games#create', :as => 'create_nfl_game'
+  put 'nfl_games/:id(.:format)' => 'nfl_games#update', :as => 'update_nfl_game', :constraints => { :id => %r([^/.?]+) }
+  delete 'nfl_games/:id(.:format)' => 'nfl_games#destroy', :as => 'destroy_nfl_game', :constraints => { :id => %r([^/.?]+) }
+
 end
